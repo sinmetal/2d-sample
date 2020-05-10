@@ -1,0 +1,41 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BulletController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/RowTextA.cs" Line="19" Column="1" />
+      <File FileName="Assets/Scripts/AppEngine.cs" />
+      <File FileName="Assets/Scripts/RowA.cs" />
+      <File FileName="Assets/RowA2.cs" />
+      <File FileName="Assets/Scripts/Shot.cs" />
+      <File FileName="Assets/Scripts/Utils.cs" />
+      <File FileName="Assets/Scripts/ProTextValue.cs" />
+      <File FileName="Assets/Scripts/BulletController.cs" Line="25" Column="10" />
+      <File FileName="Assets/Scripts/Client.cs" />
+      <File FileName="Assets/Scripts/ClientSquare.cs" />
+      <File FileName="Assets/Scripts/ProText.cs" />
+      <File FileName="Assets/Scripts/ScoreManager.cs" />
+      <File FileName="Assets/Scripts/SpannerAPI.cs" />
+      <File FileName="Assets/Scripts/SplitController.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="2d-sample" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="BulletController.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
