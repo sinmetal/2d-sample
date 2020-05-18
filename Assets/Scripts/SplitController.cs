@@ -56,7 +56,7 @@ public class SplitController : MonoBehaviour
 
     public string GetLastKey()
     {
-        return lastKey;
+        return this.lastKey;
     }
 
     public int Count()
@@ -68,7 +68,7 @@ public class SplitController : MonoBehaviour
     {
         var ret = rows.GetRange(3, rows.Count - 3);
         rows.RemoveRange(3, rows.Count - 3);
-        lastKey = rows[rows.Count - 1];
+        this.lastKey = rows[rows.Count - 1];
         ViewText();
         return ret;
     }

@@ -19,7 +19,6 @@ public class BulletController : MonoBehaviour
     {
         if (defaultTarget == null)
         {
-            Debug.Log("default target is nothing");
             return;
         }
 
@@ -27,7 +26,7 @@ public class BulletController : MonoBehaviour
         GameObject target = nextTarget;
         if (target == null)
         {
-            target = defaultTarget;
+            return;
         }
 
         float step = SPEED * Time.deltaTime;
@@ -69,12 +68,14 @@ public class BulletController : MonoBehaviour
     public void DestroyFamily()
     {
         // せっせとDestoryしてみる
-        foreach (Transform child in this.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        Destroy(transform.parent.gameObject);
-        Destroy(gameObject);
+        //foreach (Transform child in this.transform)
+        //{
+        //    Destroy(child.gameObject);
+        //}
+        //Destroy(transform.parent.gameObject);
+        //Destroy(gameObject);
+
+        this.gameObject.SetActive(false);
     }
 
     public string GetText()

@@ -11,13 +11,17 @@ public class SpannerAPI : MonoBehaviour
 
     private List<GameObject> splits = new List<GameObject>();
 
+    public GameObject bulletPrefab;
+    public GameObject defaultTarget;
+    private List<GameObject> bullets = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
         //var nodePosition = new Vector3(transform.position.x, transform.position.y - 10) * 3;
         //var newNode = Instantiate(nodePrefab, nodePosition, Quaternion.identity);
 
-        var splitPosition = new Vector3(transform.position.x, transform.position.y - 10) * 3;
+        var splitPosition = new Vector3(transform.position.x, transform.position.y - 10);
         var newSplit = Instantiate(splitPrefab, splitPosition, Quaternion.identity);
         splits.Add(newSplit);
     }
@@ -25,23 +29,35 @@ public class SpannerAPI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SplitBreaker();
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var bulletPosition = new Vector3(transform.position.x, transform.position.y - 1);
+            var bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
+            var bulletCon = bullet.GetComponentInChildren<BulletController>();
+            bullets.Add(bullet);
+        }
+
+        foreach (var bullet in bullets)
+        {
+            
+            var bulletCon = bullet.GetComponentInChildren<BulletController>();
+            if (bulletCon == null)
+            {
+                bullets.Remove(bullet);
+                return;
+            }
+            Targeting(bulletCon);
+
+            //弾のvelocityにベクトルを入れる
+            //弾からターゲットへのベクトルを求めて、正規化し任意の速さ3をかける
+            bullet.GetComponentInChildren<Rigidbody2D>().velocity = (bulletCon.GetTarget().transform.position - bullet.transform.position).normalized * 3;
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void SplitBreaker()
     {
-        var bullet = coll.GetComponent<BulletController>();
-        if (bullet == null)
-        {
-            Debug.Log("bullet is null");
-            return;
-        }
-        if (bullet.ExistTarget())
-        {
-            Debug.Log("bullet exist target");
-            return;
-        }
-
         for (int i = 0; i < splits.Count; i++)
         {
             var split = splits[i];
@@ -79,10 +95,25 @@ public class SpannerAPI : MonoBehaviour
 
                 break;
             }
+        }
+    }
+
+    void Targeting(BulletController bullet)
+    {
+        for (int i = 0; i < splits.Count; i++)
+        {
+            var split = splits[i];
+            var splitCon = split.GetComponentInChildren<SplitController>();
+            if (splitCon == null)
+            {
+                Debug.Log("splitCon is null");
+                return;
+            }
 
             if (bullet.GetText().CompareTo(splitCon.GetLastKey()) < 0)
             {
                 bullet.SetTarget(split);
+                return;
             }
         }
 
